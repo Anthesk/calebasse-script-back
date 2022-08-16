@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
   //Set the response HTTP header with HTTP status and Content type
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello Worlds\n');
+  res.end('Calebasse Script\n');
 });
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
