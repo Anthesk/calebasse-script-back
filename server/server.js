@@ -1,18 +1,23 @@
-import express from 'express';
-import bp from 'body-parser';
-import { default as addScript } from './post/create_script.js';
-import { default as listScripts } from './get/get_script.js';
+import express from 'express'
+import bp from 'body-parser'
+import addScript from './post/create_script.js'
+import listScripts from './get/get_script.js'
+import listShots from './get/get_shots.js'
 
-var app = express();
+const app = express()
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
-app.get('/listScripts', listScripts);
-app.post('/addScript', addScript);
+// get
+app.get('/listScripts', listScripts)
+app.get('/listShots', listShots)
 
-var server = app.listen(3000, function () {
-   var host = server.address().address;
-   var port = server.address().port;
-   console.log("Example app listening at http://%s:%s", host, port);
-});
+// post
+app.post('/addScript', addScript)
+
+const server = app.listen(3000, function () {
+  const host = server.address().address
+  const port = server.address().port
+  console.log('Example app listening at http://%s:%s', host, port)
+})
