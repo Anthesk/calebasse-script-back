@@ -1,7 +1,16 @@
-import config from '../config.js'
 import Mongo from '../mongo.js'
 
 export default async function (req, res) {
-  await Mongo.collection(config.collectionName).insertOne({ y: 2 })
-  res.end()
+  const dateNow = new Date()
+  const newScript = {
+    name: req.body.name ?? 'New Script',
+    sequences: [],
+    creationDate: dateNow,
+    lastUpdatedDate: dateNow
+  }
+
+  const id = (await Mongo.collection('scripts').insertOne(newScript)).insertedId
+  newScript._id = id
+
+  res.send(newScript)
 }

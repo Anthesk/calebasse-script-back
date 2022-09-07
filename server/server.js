@@ -2,8 +2,8 @@ import express from 'express'
 import bp from 'body-parser'
 import addScript from './post/create_script.js'
 import addShot from './post/create_shot.js'
-import listScripts from './get/get_scripts.js'
-import listShots from './get/get_shots.js'
+import getScripts from './get/get_scripts.js'
+import getShots from './get/get_shots.js'
 import Mongo from './mongo.js'
 
 async function main () {
@@ -13,13 +13,8 @@ async function main () {
   app.use(bp.json())
   app.use(bp.urlencoded({ extended: true }))
 
-  // get
-  app.get('/scripts', listScripts)
-  app.get('/shots', listShots)
-
-  // post
-  app.post('/script', addScript)
-  app.post('/shot', addShot)
+  app.route('/scripts').get(getScripts).post(addScript)
+  app.route('/shots').get(getShots).post(addShot)
 
   const server = app.listen(3000, function () {
     const port = server.address().port
