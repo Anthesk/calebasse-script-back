@@ -8,6 +8,10 @@ import addScript from './post/create_script.js'
 import addSequence from './post/create_sequence.js'
 import addShot from './post/create_shot.js'
 import addTake from './post/create_take.js'
+import deleteScript from './delete/delete_script.js'
+import deleteSequence from './delete/delete_sequence.js'
+import deleteShot from './delete/delete_shot.js'
+import deleteTake from './delete/delete_take.js'
 import Mongo from './mongo.js'
 
 async function main () {
@@ -17,10 +21,10 @@ async function main () {
   app.use(bp.json())
   app.use(bp.urlencoded({ extended: true }))
 
-  app.route('/script').get(getScripts).post(addScript)
-  app.route('/sequence').get(getSequence).post(addSequence)
-  app.route('/shot').get(getShots).post(addShot)
-  app.route('/take').get(getTakes).post(addTake)
+  app.route('/script').get(getScripts).post(addScript).delete(deleteScript)
+  app.route('/sequence').get(getSequence).post(addSequence).delete(deleteSequence)
+  app.route('/shot').get(getShots).post(addShot).delete(deleteShot)
+  app.route('/take').get(getTakes).post(addTake).delete(deleteTake)
 
   app.use(function (err, req, res, next) {
     console.error(err.message ?? err)
