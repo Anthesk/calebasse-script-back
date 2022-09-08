@@ -15,9 +15,9 @@ async function main () {
   app.use(bp.json())
   app.use(bp.urlencoded({ extended: true }))
 
-  app.route('/scripts').get(getScripts).post(addScript)
+  app.route('/script').get(getScripts).post(addScript)
   app.route('/sequence').get(getSequence).post(addSequence)
-  app.route('/shots').get(getShots).post(addShot)
+  app.route('/shot').get(getShots).post(addShot)
 
   app.use(function (err, req, res, next) {
     console.error(err.message ?? err)
