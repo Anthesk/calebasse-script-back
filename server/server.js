@@ -3,9 +3,11 @@ import bp from 'body-parser'
 import getScripts from './get/get_scripts.js'
 import getSequence from './get/get_sequence.js'
 import getShots from './get/get_shots.js'
+import getTakes from './get/get_takes.js'
 import addScript from './post/create_script.js'
 import addSequence from './post/create_sequence.js'
 import addShot from './post/create_shot.js'
+import addTake from './post/create_take.js'
 import Mongo from './mongo.js'
 
 async function main () {
@@ -18,6 +20,7 @@ async function main () {
   app.route('/script').get(getScripts).post(addScript)
   app.route('/sequence').get(getSequence).post(addSequence)
   app.route('/shot').get(getShots).post(addShot)
+  app.route('/take').get(getTakes).post(addTake)
 
   app.use(function (err, req, res, next) {
     console.error(err.message ?? err)
