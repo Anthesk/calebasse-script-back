@@ -3,6 +3,14 @@ services:
     build: .
     volumes:
       - .:/usr/src/app
-      # - /usr/src/app/node_modules
     ports:
       - "5000:3000"
+  mongodb:
+    image: mongo:5.0
+    container_name: mongo
+    restart: unless-stopped
+    ports:
+        - 27017:27017
+    volumes:
+        - /data/db
+
