@@ -3,10 +3,8 @@ FROM node
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-RUN yarn install
-
 COPY . .
+RUN yarn install
 
 EXPOSE 3000
 
