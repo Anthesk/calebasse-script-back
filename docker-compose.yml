@@ -13,5 +13,5 @@ services:
     ports:
         - 26083:27017
     volumes:
-        - /data/db
+        - ./data/db:/data/db
     command: [--auth]
