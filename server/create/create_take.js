@@ -21,13 +21,25 @@ export default async function (req, res, next) {
     return
   }
 
+  let status
+  if (req.body.status !== null) {
+    if (req.body.status !== 'ok' && req.body.status !== 'pok' && req.body.status !== 'nok') {
+      next({ message: 'Take\'s status must be \'ok\', \'pok\' or \'nok\'', status: 400 })
+      return
+    } else {
+      status = req.body.status
+    }
+  } else {
+    status = 'nok'
+  }
+
   const dateNow = new Date()
   const newTake = {
     name: req.body.name ?? 'New Shot',
     shotId: shot._id,
     audioTrack: req.body.audioTrack ?? 0,
     details: req.body.details ?? '',
-    status: req.body.status ?? 'nok',
+    status,
     creationDate: dateNow,
     lastUpdatedDate: dateNow
   }
