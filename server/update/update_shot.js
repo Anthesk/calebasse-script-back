@@ -9,7 +9,7 @@ export default async function (req, res, next) {
     }
 
     const dateNow = new Date()
-    const newShot = await Mongo.collection('shots').findOne(req.body._id)
+    const newShot = await Mongo.collection('shots').findOne(ObjectId(req.body._id))
 
     if (newShot == null) {
       next({ message: 'Shot not found', status: 404 })

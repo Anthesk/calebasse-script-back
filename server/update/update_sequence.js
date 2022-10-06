@@ -9,7 +9,7 @@ export default async function (req, res, next) {
     }
 
     const dateNow = new Date()
-    const newSequence = await Mongo.collection('sequences').findOne(req.body._id)
+    const newSequence = await Mongo.collection('sequences').findOne(ObjectId(req.body._id))
 
     if (newSequence == null) {
       next({ message: 'Sequence not found', status: 404 })
