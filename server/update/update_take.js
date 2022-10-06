@@ -1,4 +1,4 @@
-import Mongo from '../mongo'
+import Mongo from '../mongo.js'
 
 export default async function (req, res, next) {
   try {
