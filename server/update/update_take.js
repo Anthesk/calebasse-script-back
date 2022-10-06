@@ -18,7 +18,7 @@ export default async function (req, res, next) {
     newShot.name = req.body.newName ?? newShot.name
     newShot.lastUpdatedDate = dateNow
 
-    await Mongo.collection('shots').updateOne(ObjectId(req.body._id), { $set: { name: req.body.newName, lastUpdatedDate: dateNow } })
+    await Mongo.collection('shots').updateOne({ _id: ObjectId(req.body._id) }, { $set: { name: req.body.newName, lastUpdatedDate: dateNow } })
 
     res.send(newShot)
   } catch (e) {
