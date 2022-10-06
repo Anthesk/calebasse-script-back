@@ -27,7 +27,7 @@ export default async function (req, res, next) {
       status = newTake.status
     }
 
-    newTake.name = req.body.newName ?? newTake.name
+    newTake.name = req.body.name ?? newTake.name
     newTake.audioTrack = req.body.audioTrack ?? newTake.audioTrack
     newTake.details = req.body.details ?? newTake.details
     newTake.status = status
